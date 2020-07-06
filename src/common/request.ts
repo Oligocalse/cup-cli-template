@@ -1,5 +1,6 @@
 import { extend } from 'umi-request';
-// import { Toast } from 'antd-mobile';
+import { Toast } from 'antd-mobile';
+// import { Request } from 'umi';
 
 type API_TYPE = 'development' | 'dev' | 'stable' | 'online';
 
@@ -23,24 +24,25 @@ const request = extend({
   timeout: 5000,
   headers: {
     'Content-Type': ' application/json',
-    'Authorization': `${token_type} ${token}`,
+    Authorization: `${token_type} ${token}`,
   },
   params: {},
-  errorHandler: function (error) {
+  errorHandler: function(error) {
     /* 异常处理 */
-    // Toast.fail('123');
+    Toast.fail('123');
     console.log(error);
   },
 });
 
 // 请求拦截
-request.interceptors.request.use((url, options) => {
-  // console.log(options);
-  return {
-    url: `${API_ENV}${url}`,
-    options: { ...options, interceptors: true },
-  };
-},
+request.interceptors.request.use(
+  (url, options) => {
+    // console.log(options);
+    return {
+      url: `${API_ENV}${url}`,
+      options: { ...options, interceptors: true },
+    };
+  },
   { global: true },
 );
 
@@ -65,17 +67,14 @@ request.interceptors.response.use(response => {
 
 // 克隆响应对象做解析处理
 request.interceptors.response.use(async response => {
-  const data = await response.clone().json();
+  const res = await response.clone().json();
+  const { data = {} } = res;
   // if (data && data.NOT_LOGIN) {
   //   location.href = '登录url';
   // }
-  console.log('=======data======');
-  console.log(data);
   if (data['token'] && data['token_type']) {
-    console.log(data);
-    console.log(localStorage);
-    localStorage.setItem('token', data['token'])
-    localStorage.setItem('token_type', data['token_type'])
+    localStorage.setItem('token', data['token']);
+    localStorage.setItem('token_type', data['token_type']);
   }
   return response;
 });

@@ -1,8 +1,8 @@
 // @ts-nocheck
-import { createBrowserHistory } from '/Users/zhoufei/project/activity/node_modules/@umijs/runtime';
+import { createBrowserHistory } from '/Users/zhoufei/private_project/cup-cli-template/node_modules/@umijs/runtime';
 
 let options = {
-  "basename": "/"
+  "basename": "/activity"
 };
 if ((<any>window).routerBase) {
   options.basename = (<any>window).routerBase;

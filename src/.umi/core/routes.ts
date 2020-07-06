@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { ApplyPluginsType } from '/Users/zhoufei/project/activity/node_modules/@umijs/runtime';
+import { ApplyPluginsType } from '/Users/zhoufei/private_project/cup-cli-template/node_modules/@umijs/runtime';
 import { plugin } from './plugin';
 
 const routes = [
@@ -7,18 +7,6 @@ const routes = [
     "path": "/index.html",
     "component": require('@/pages/index').default,
     "title": "无关紧要的页面",
-    "exact": true
-  },
-  {
-    "path": "/",
-    "component": require('@/pages/index').default,
-    "title": "无关紧要的页面",
-    "exact": true
-  },
-  {
-    "path": "/lottery.html",
-    "component": require('@/pages/lottery').default,
-    "title": "转转赚活动，快来参加吧",
     "exact": true
   }
 ];
