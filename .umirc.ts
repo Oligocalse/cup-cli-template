@@ -1,23 +1,24 @@
 import { defineConfig } from 'umi';
+import proxy from './proxy/index.js';
 
 export default defineConfig({
-  base: '/',
-  publicPath: './',
+  base: '/activity',
+  publicPath: '/activity/',
+  runtimePublicPath: true,
   exportStatic: {
-    htmlSuffix: true
+    htmlSuffix: true,
   },
   define: {
-    API_ENV: process.env.API_ENV
+    'process.env.API_ENV': process.env.API_ENV,
   },
   routes: [
-    { path: '/', component: '@/pages/index', title: '无关紧要的页面' },
-  ],
-  proxy: {
-    '/20/turn.php': {
-      'target': 'https://cellapi.youzhuan.com',
-      'changeOrigin': true,
+    {
+      path: '/index',
+      component: '@/pages/index',
+      title: '无关紧要的页面',
     },
-  },
+  ],
+  proxy,
   alias: {
     '@styles': '@/styles',
     '@pages': '@/pages',
@@ -25,7 +26,7 @@ export default defineConfig({
     '@common': '@/common',
     '@utils': '@/utils',
     '@images': '@/assets/images',
-    '@layout': '@/layout',
+    '@layout': '@/layouts',
   },
   extraPostCSSPlugins: [
     require('postcss-flexbugs-fixes'),

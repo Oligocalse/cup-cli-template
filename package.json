@@ -1,13 +1,14 @@
 {
   "private": true,
   "scripts": {
-    "start": "API_ENV=development umi dev",
-    "build": "API_ENV=dev umi build",
+    "start": "cross-env API_ENV=development umi dev",
+    "build:dev": "cross-env API_ENV=dev umi build",
+    "build:stable": "cross-env API_ENV=stable umi build",
+    "build": "cross-env API_ENV=dev umi build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
-    "test:coverage": "umi-test --coverage",
-    "deploy": "node /Users/zhoufei/.npm-global/lib/node_modules/deploy-cli/bin/index"
+    "test:coverage": "umi-test --coverage"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -31,10 +32,7 @@
     "callapp-lib": "^2.1.8",
     "compressing": "^1.5.1",
     "cross-env": "^7.0.2",
-    "inquirer": "^7.2.0",
     "lint-staged": "^10.0.7",
-    "node-ssh": "^10.0.2",
-    "ora": "^4.0.4",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-plugin-px2rem": "^0.8.1",
     "postcss-px-to-viewport": "^1.1.1",
@@ -42,7 +40,6 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-use": "^15.3.0",
-    "shelljs": "^0.8.4",
     "swiper": "^5.4.5",
     "umi": "^3.2.6",
     "yorkie": "^2.0.0"
